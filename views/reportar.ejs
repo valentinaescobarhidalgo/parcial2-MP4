@@ -1,0 +1,128 @@
+
+<%- include('partials/header') %>
+
+<main class="page-container my-5">
+
+    <div class="row justify-content-center">
+
+        <div class="col-lg-8 col-xl-7">
+
+            <div class="form-card">
+
+                <div class="text-center mb-4">
+
+                    <div class="form-top-icon">
+                        📝
+                    </div>
+
+                    <span class="hero-tag">
+                        CENTRO DE AYUDA
+                    </span>
+
+                    <h2 class="mt-2">
+                        Reportar una falla
+                    </h2>
+
+                    <p class="section-subtitle mt-2">
+                        Cuéntanos qué está sucediendo y ayúdanos
+                        a mejorar los recursos tecnológicos.
+                    </p>
+
+                    <div class="heading-decoration mx-auto"></div>
+
+                </div>
+
+
+                <!-- MENSAJE DEL SERVIDOR -->
+
+                <% if (mensajeServidor) { %>
+
+                    <div class="alert alert-success rounded-3"
+                         role="alert">
+
+                        ✨ <%= mensajeServidor %>
+
+                    </div>
+
+                <% } %>
+
+
+                <!-- FORMULARIO -->
+
+                <form method="POST" action="/reportar">
+
+                    <div class="mb-4">
+
+                        <label for="nombre" class="form-label">
+                            Nombre del solicitante
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="nombre"
+                               name="nombre"
+                               placeholder="Escribe tu nombre completo"
+                               required>
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label for="ubicacion" class="form-label">
+                            Aula / Ubicación
+                        </label>
+
+                        <input type="text"
+                               class="form-control"
+                               id="ubicacion"
+                               name="ubicacion"
+                               placeholder="Ejemplo: Aula 204, laboratorio..."
+                               required>
+
+                    </div>
+
+
+                    <div class="mb-4">
+
+                        <label for="descripcion" class="form-label">
+                            Descripción del problema
+                        </label>
+
+                        <textarea class="form-control"
+                                  id="descripcion"
+                                  name="descripcion"
+                                  rows="5"
+                                  placeholder="Describe detalladamente la falla técnica..."
+                                  required></textarea>
+
+                        <small class="text-secondary mt-2 d-block">
+                            Intenta explicar qué equipo presenta el problema
+                            y qué está sucediendo.
+                        </small>
+
+                    </div>
+
+
+                    <div class="d-grid mt-4">
+
+                        <button type="submit"
+                                class="btn btn-helpdesk btn-lg">
+
+                            Enviar reporte &nbsp; ✨
+
+                        </button>
+
+                    </div>
+
+                </form>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</main>
+
+<%- include('partials/footer') %>

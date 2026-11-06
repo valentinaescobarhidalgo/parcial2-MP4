@@ -1,0 +1,67 @@
+
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title><%= titulo %> | HelpDesk</title>
+
+    <link rel="stylesheet" href="/bootstrap/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="/css/estilos.css">
+</head>
+
+<body>
+
+<nav class="navbar navbar-expand-lg navbar-dark navbar-helpdesk">
+
+    <div class="container">
+
+        <a class="navbar-brand" href="/">
+            <span class="brand-icon">✿</span>
+            HelpDesk
+        </a>
+
+        <button class="navbar-toggler"
+                type="button"
+                data-bs-toggle="collapse"
+                data-bs-target="#menu">
+
+            <span class="navbar-toggler-icon"></span>
+
+        </button>
+
+        <div class="collapse navbar-collapse" id="menu">
+
+            <ul class="navbar-nav ms-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link <%= paginaactual === 'inicio' ? 'active' : '' %>"
+                       href="/">
+                        Inicio
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <%= paginaactual === 'reportar' ? 'active' : '' %>"
+                       href="/reportar">
+                        Reportar falla
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link <%= paginaactual === 'panel' ? 'active' : '' %>"
+                       href="/panel">
+                        Panel de tickets
+                    </a>
+                </li>
+
+            </ul>
+
+        </div>
+
+    </div>
+
+</nav>
