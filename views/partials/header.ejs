@@ -51,13 +51,22 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
-                    <a class="nav-link <%= paginaactual === 'panel' ? 'active' : '' %>"
-                       href="/panel">
-                        Panel de tickets
-                    </a>
-                </li>
+                <% if (loginAdmin) { %>
+                    <li class="nav-item">
+                        <a class="nav-link <%= paginaactual === 'panel' ? 'active' : '' %>"
+                           href="/panel">
+                            Panel de tickets
+                        </a>
+                    </li>
 
+                <% } else { %>
+                    <li class="nav-item">
+                        <a class="nav-link <%= paginaactual === 'login' ? 'active' : '' %>"
+                           href="/login">
+                            Acceso administrador
+                        </a>
+                    </li>
+                <% } %>
             </ul>
 
         </div>

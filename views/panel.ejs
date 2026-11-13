@@ -1,221 +1,216 @@
-
 <%- include('partials/header') %>
 
-<main class="page-container my-5">
+    <main class="page-container my-5">
 
-    <!-- ENCABEZADO DEL PANEL -->
+        <!-- ENCABEZADO DEL PANEL -->
 
-    <div class="row align-items-center mb-4">
+        <div class="row align-items-center mb-4">
 
-        <div class="col-md-8">
+            <div class="col-md-8">
 
-            <div class="page-heading mb-0">
+                <div class="page-heading mb-0">
 
-                <span class="hero-tag">
-                    ADMINISTRACIÓN
-                </span>
+                    <span class="hero-tag">
+                        ADMINISTRACIÓN
+                    </span>
 
-                <h1 class="mt-2">
-                    Panel de Tickets
-                </h1>
+                    <h1 class="mt-2">
+                        Panel de Tickets
+                    </h1>
 
-                <p class="section-subtitle mb-0">
-                    Consulta y administra los reportes técnicos pendientes.
-                </p>
+                    <h2 class="h5 fw-bold mb-3">
+                        bienvenido, valentina
+                    </h2>
 
-                <div class="heading-decoration"></div>
+                    <p class="section-subtitle mb-0">
+                        Consulta y administra los reportes técnicos pendientes.
+                    </p>
+
+                    <div class="heading-decoration"></div>
+
+                </div>
+
+            </div>
+
+
+            <!-- CONTADOR -->
+
+            <div class="col-md-4">
+
+                <div class="stat-card">
+
+                    <div class="stat-label">
+                        Total de fallas pendientes
+                    </div>
+
+                    <div class="stat-number">
+                        <%= mensajes.length %>
+                    </div>
+
+                </div>
 
             </div>
 
         </div>
 
 
-        <!-- CONTADOR -->
+        <!-- COMPROBAR SI EXISTEN TICKETS -->
 
-        <div class="col-md-4">
-
-            <div class="stat-card">
-
-                <div class="stat-label">
-                    Total de fallas pendientes
-                </div>
-
-                <div class="stat-number">
-                    <%= mensajes.length %>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
+        <% if (mensajes.length> 0) { %>
 
 
-    <!-- COMPROBAR SI EXISTEN TICKETS -->
+            <div class="tickets-card">
 
-    <% if (mensajes.length > 0) { %>
-
-
-        <div class="tickets-card">
-
-            <div class="d-flex justify-content-between
+                <div class="d-flex justify-content-between
                         align-items-center mb-3">
 
-                <div>
+                    <div>
 
-                    <h5 class="fw-bold mb-1" style="color: #563477;">
-                        📋 Reportes registrados
-                    </h5>
+                        <h5 class="fw-bold mb-1" style="color: #563477;">
+                            📋 Reportes registrados
+                        </h5>
 
-                    <small class="section-subtitle">
-                        Lista de solicitudes pendientes de atención.
-                    </small>
+                        <small class="section-subtitle">
+                            Lista de solicitudes pendientes de atención.
+                        </small>
+
+                    </div>
+
+                    <span class="badge rounded-pill px-3 py-2" style="background: #eee6f8; color: #7952a5;">
+
+                        <%= mensajes.length %> pendientes
+
+                    </span>
 
                 </div>
 
-                <span class="badge rounded-pill px-3 py-2"
-                      style="background: #eee6f8; color: #7952a5;">
 
-                    <%= mensajes.length %> pendientes
+                <div class="table-responsive">
 
-                </span>
+                    <table class="table tickets-table align-middle">
 
-            </div>
-
-
-            <div class="table-responsive">
-
-                <table class="table tickets-table align-middle">
-
-                    <thead>
-
-                        <tr>
-
-                            <th>ID</th>
-
-                            <th>Solicitante</th>
-
-                            <th>Ubicación</th>
-
-                            <th>Descripción</th>
-
-                            <th>Fecha</th>
-
-                            <th>Acción</th>
-
-                        </tr>
-
-                    </thead>
-
-
-                    <tbody>
-
-                        <% mensajes.forEach(ticket => { %>
+                        <thead>
 
                             <tr>
 
-                                <td>
+                                <th>ID</th>
 
-                                    <span class="ticket-id">
-                                        #<%= ticket.id %>
-                                    </span>
+                                <th>Solicitante</th>
 
-                                </td>
+                                <th>Ubicación</th>
 
+                                <th>Descripción</th>
 
-                                <td>
+                                <th>Fecha</th>
 
-                                    <span class="ticket-name">
-                                        <%= ticket.nombre %>
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-
-                                    <span class="ticket-location">
-                                        📍 <%= ticket.ubicacion %>
-                                    </span>
-
-                                </td>
-
-
-                                <td>
-
-                                    <div class="ticket-description">
-                                        <%= ticket.descripcion %>
-                                    </div>
-
-                                </td>
-
-
-                                <td>
-                                    <small>
-                                        <%= ticket.fecha %>
-                                    </small>
-                                </td>
-
-
-                                <td>
-
-                                    <form method="POST"
-                                          action="/panel/resolver"
-                                          onsubmit="return confirm('¿Estás seguro de que deseas marcar este ticket como resuelto?');">
-
-                                        <input type="hidden"
-                                               name="id"
-                                               value="<%= ticket.id %>">
-
-                                        <button type="submit"
-                                                class="btn-resolver">
-
-                                            ✓ Resuelto
-
-                                        </button>
-
-                                    </form>
-
-                                </td>
+                                <th>Acción</th>
 
                             </tr>
 
-                        <% }); %>
+                        </thead>
 
-                    </tbody>
 
-                </table>
+                        <tbody>
+
+                            <% mensajes.forEach(ticket => { %>
+
+                                <tr>
+
+                                    <td class="text-muted small">
+                                        <%= ticket._id %>
+                                    </td>
+
+
+                                    <td class="fw-bold">
+                                        <%= ticket.nombre %>
+                                    </td>
+
+
+                                    <td>
+
+                                        <span class="ticket-location">
+                                            📍 <%= ticket.ubicacion %>
+                                        </span>
+
+                                    </td>
+
+
+                                    <td>
+
+                                        <div class="ticket-description">
+                                            <%= ticket.descripcion %>
+                                        </div>
+
+                                    </td>
+
+
+                                    <td>
+                                        <%= ticket.fecha.toLocaleDateString('es-CO') %>
+                                    </td>
+
+                                    <td class="text-center">
+                                        <form action="/panel/resolver" method="POST"
+                                            onsubmit="return confirm('¿Eliminar de MongoDB?');">
+                                            <input type="hidden" name="id" value="<%= ticket._id %>">
+                                            <button type="submit" class="btn btn-danger btn-sm">resuelto</button>
+                                        </form>
+                                    </td>
+
+                                </tr>
+
+                                <% }); %>
+
+                        </tbody>
+
+                    </table>
+
+                </div>
 
             </div>
 
-        </div>
+
+            <% } else { %>
 
 
-    <% } else { %>
+                <!-- CUANDO NO EXISTEN TICKETS -->
+
+                <div class="empty-state">
+
+                    <div class="empty-icon">
+                        ✓
+                    </div>
+
+                    <h3>
+                        ¡Todo funciona correctamente!
+                    </h3>
+
+                    <p class="section-subtitle mb-0">
+                        No hay fallas pendientes por resolver.
+                        Todos los reportes están al día.
+                    </p>
+
+                </div>
 
 
-        <!-- CUANDO NO EXISTEN TICKETS -->
+                <% } %>
 
-        <div class="empty-state">
-
-            <div class="empty-icon">
-                ✓
-            </div>
-
-            <h3>
-                ¡Todo funciona correctamente!
-            </h3>
-
-            <p class="section-subtitle mb-0">
-                No hay fallas pendientes por resolver.
-                Todos los reportes están al día.
-            </p>
-
-        </div>
+                    <br />
 
 
-    <% } %>
+                    <% if (loginAdmin) { %>
 
-</main>
+                        <form method="POST" action="/logout">
 
-<%- include('partials/footer') %>
+                            <button type="submit" class="btn btn-dark btn-floating" title="Cerrar sesión"
+                                style="border-radius: 20px">
+
+                                Cerrar sesión
+
+                            </button>
+
+                        </form>
+                        <% } %>
+
+    </main>
+
+    <%- include('partials/footer') %>
